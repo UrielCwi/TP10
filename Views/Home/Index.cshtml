@@ -1,5 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
-
-<h1>TP 10 - Index</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style src="wwwroot\css\site.css"></style>
+    <script src="~\site.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+@foreach (var item in ViewBag.Series)
+{
+    <div class="card" style="width: 30rem;">
+    <img src="@item.ImagenSerie" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@item.Nombre</h5>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalActores" onclick="MostrarActores (@item). IdSerie)"> Ver Info Actores</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTemporadas" onclick="MostrarTemporadas (@item). IdSerie)"> Ver Info Temporadas</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSerie" onclick="MostrarSerie()"> Ver Info Serie</button>
+        </div>
+    </div>
+}  
+</body>
+</html>
