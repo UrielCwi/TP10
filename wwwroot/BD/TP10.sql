@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [BDSeries]    Script Date: 23/10/2023 09:15:42 ******/
+/****** Object:  Database [BDSeries]    Script Date: 25/10/2023 09:00:47 ******/
 CREATE DATABASE [BDSeries]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -79,10 +79,10 @@ ALTER DATABASE [BDSeries] SET QUERY_STORE = OFF
 GO
 USE [BDSeries]
 GO
-/****** Object:  User [alumno]    Script Date: 23/10/2023 09:15:42 ******/
+/****** Object:  User [alumno]    Script Date: 25/10/2023 09:00:48 ******/
 CREATE USER [alumno] FOR LOGIN [alumno] WITH DEFAULT_SCHEMA=[dbo]
 GO
-/****** Object:  Table [dbo].[Actores]    Script Date: 23/10/2023 09:15:42 ******/
+/****** Object:  Table [dbo].[Actores]    Script Date: 25/10/2023 09:00:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,7 +97,7 @@ CREATE TABLE [dbo].[Actores](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Series]    Script Date: 23/10/2023 09:15:42 ******/
+/****** Object:  Table [dbo].[Series]    Script Date: 25/10/2023 09:00:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -114,7 +114,7 @@ CREATE TABLE [dbo].[Series](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Temporadas]    Script Date: 23/10/2023 09:15:42 ******/
+/****** Object:  Table [dbo].[Temporadas]    Script Date: 25/10/2023 09:00:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -252,7 +252,7 @@ REFERENCES [dbo].[Series] ([IdSerie])
 GO
 ALTER TABLE [dbo].[Temporadas] CHECK CONSTRAINT [FK_Temporadas_Series]
 GO
-/****** Object:  StoredProcedure [dbo].[GetActores]    Script Date: 23/10/2023 09:15:42 ******/
+/****** Object:  StoredProcedure [dbo].[GetActores]    Script Date: 25/10/2023 09:00:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -281,7 +281,38 @@ SELECT [IdActor]
   WHERE IdSerie = @IdSerie
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetSeries]    Script Date: 23/10/2023 09:15:42 ******/
+/****** Object:  StoredProcedure [dbo].[GetSerie]    Script Date: 25/10/2023 09:00:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetSerie]
+	-- Add the parameters for the stored procedure here
+	(
+		@IdSerie int
+	)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+SELECT [IdSerie]
+      ,[Nombre]
+      ,[AñoInicio]
+      ,[Sinopsis]
+      ,[ImagenSerie]
+  FROM [dbo].[Series]
+  WHERE IdSerie = @IdSerie
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetSeries]    Script Date: 25/10/2023 09:00:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -308,7 +339,7 @@ SELECT [IdSerie]
   FROM [dbo].[Series]
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetTemporadas]    Script Date: 23/10/2023 09:15:42 ******/
+/****** Object:  StoredProcedure [dbo].[GetTemporadas]    Script Date: 25/10/2023 09:00:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
