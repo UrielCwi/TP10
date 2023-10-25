@@ -9,4 +9,7 @@ public class Account{
    public static List<Temporada> GetTemporadas(int IdSerie){
     return BD.GetTemporadas(IdSerie);
    }
+   public static List<Serie> GetSerie(int IdSerie){
+    return BD.GetSerie(IdSerie);
+   }
 }

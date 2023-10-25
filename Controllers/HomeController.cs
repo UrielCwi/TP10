@@ -18,7 +18,7 @@ public class HomeController : Controller
         return Account.GetTemporadas(IdSerie);
     }
 
-    public List<Serie> VerDetalleASerie(){
-        return Account.GetSeries();
+    public List<Serie> VerDetalleASerie(int IdSerie){
+        return Account.GetSerie(IdSerie);
     }
 }
