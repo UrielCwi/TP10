@@ -1,4 +1,15 @@
-﻿function MostrarActores(IdS){
+﻿$(document).ready(function () {
+
+    $('#Modal').modal('hide');
+});
+function limpiar(){
+    $("#titulo").html("");
+    $("#texto1").html("");
+    $("#texto2").html("");
+    $("#texto3").html("");
+    $("#imagen1").attr("src","");
+}
+function MostrarActores(IdS){
     $.ajax({
         type:'POST',
         dataType: 'JSON',
@@ -7,10 +18,14 @@
         success:
             function(response)
             {
-                $("#titulo").html("Actores");
+                limpiar();
+                var texto = "";
                 response.forEach(item => {
-                    $("#texto1").html(item.Nombre);
+                    texto += (item.nombre + "<br/>");
                 });
+                $("#titulo").html("Actores");
+                $("#Modal").modal('show');
+                $("#texto1").html(texto);
             }
     });
 }
@@ -24,11 +39,16 @@ function MostrarTemporadas(IdS){
         success:
             function(response)
             {
-                $("#titulo").html("Temporadas");
+                limpiar();
+                var texto = "";
                 response.forEach(item => {
-                    $("#texto1").html("Temporadas Totales: "+ item.NumeroTemporada);
-                    $("#texto2").html("Nombre de las Temporadas: "+ item.TituloTemporada); 
+                    texto += (item.tituloTemporada + "<br/>");
                 });
+                $("#titulo").html("Temporadas");
+                $("#Modal").modal('show');
+                $("#texto1").html("Temporadas Totales: <strong>" + response.length + "</strong>");
+                $("#texto2").html("<strong>Nombre de las Temporadas: </strong>"); 
+                $("#texto3").html(texto);
             }
     });
 }
@@ -42,12 +62,14 @@ function MostrarSeries(IdS){
         success:
             function(response)
             {
+                limpiar();
                 $("#titulo").html("Series");
+                $("#Modal").modal('show');
                 response.forEach(item => {
-                    $("#texto1").html(response.Nombre);
-                    $("#texto2").html("Su año de inicio fue en: "+ response.AñoInicio);
-                    $("#texto3").html(response.Sinopsis);
-                    $("#imagen1").attr("src","/"+response.ImagenSerie);
+                    $("#texto1").html(item.nombre);
+                    $("#texto2").html("Su año de inicio fue en: " + item.añoInicio.toString());
+                    $("#texto3").html(item.sinopsis);
+                    $("#imagen1").attr("src",item.imagenSerie);
                 });
             }
     });

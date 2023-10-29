@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace TP10.Models;
 public class BD{
 
-    private static string _connectionString = @"Server=A-PHZ2-CIDI-050; Database=BDSeries; Trusted_Connection=True";
+    private static string _connectionString = @"Server=.; Database=BDSeries; Trusted_Connection=True";
     public static List<Serie> GetSeries(){
         List<Serie> Series = null;
         using(SqlConnection db = new SqlConnection(_connectionString)){
